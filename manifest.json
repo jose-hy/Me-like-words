@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+  "name": "Me-like-words",
+  "version": "1.0",
+
+  "description": "Change words on current website to something more fun!",
+  "homepage_url": "https://github.com/ossd-s23/Me-like-words",
+  "icons": {
+    "48": "icons/icon-48.png"
+  },
+
+  "permissions": [
+    "activeTab"
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/icon-32.png",
+    "default_title": "Me-Like-Words",
+    "default_popup": "popup/choose_cat.html"
+  }
+}
