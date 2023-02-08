@@ -32,11 +32,3 @@ button {
 button:hover {
   background-color: #B5DEF5;
 }
-
-button[type="reset"] {
-  background-color: #EDB7A8;
-}
-
-button[type="reset"]:hover {
-  background-color: #EB9F8A;
-}
