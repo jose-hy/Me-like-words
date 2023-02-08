@@ -4,16 +4,13 @@
  */
 function listenForClicks() {
   document.addEventListener("click", (e) => {
-    /**
-     * Given the name of a vegetable, get the URL to the corresponding image.
-     */
     function name_to_rules(name) {
       switch (name) {
         case "Caesar Cipher":
-          return [["a", "n"], ["b", "o"], ["c", "p"], ["d", "q"], ["e", "r"], ["f", "s"], ["g", "t"], ["h", "u"], ["i", "v"], ["j", "w"], ["k", "x"], ["l", "y"], ["m", "z"], ["n", "z"], ["o", "a"], ["p", "b"], ["q", "c"], ["r", "d"], ["s", "e"], ["t", "f"], ["u", "g"], ["v", "h"], ["w", "i"], ["x", "j"], ["y", "k"], ["z", "l"], ["A", "N"], ["B", "O"], ["C", "P"], ["D", "Q"], ["E", "R"], ["F", "S"], ["G", "T"], ["H", "U"], ["I", "V"], ["J", "W"], ["K", "X"], ["L", "Y"], ["M", "Z"], ["N", "Z"], ["O", "A"], ["P", "B"], ["Q", "C"], ["R", "D"], ["S", "E"], ["T", "F"], ["U", "G"], ["V", "H"], ["W", "I"], ["X", "J"], ["Y", "K"], ["Z", "L"]];
+          return [{"from": "a", "to": "n"}, {'from': "b", 'to': "o"}, {'from': "c", 'to': "p"}, {'from': "d", 'to': "q"}, {'from': "e", 'to': "r"}, {'from': "f", 'to': "s"}, {'from': "g", 'to': "t"}, {'from': "h", 'to': "u"}, {'from': "i", 'to': "v"}, {'from': "j", 'to': "w"}, {'from': "k", 'to': "x"}, {'from': "l", 'to': "y"}, {'from': "m", 'to': "z"}, {'from': "n", 'to': "a"}, {'from': "o", 'to': "b"}, {'from': "p", 'to': "c"}, {'from': "q", 'to': "d"}, {'from': "r", 'to': "e"}, {'from': "s", 'to': "f"}, {'from': "t", 'to': "g"}, {'from': "u", 'to': "h"}, {'from': "v", 'to': "i"}, {'from': "w", 'to': "j"}, {'from': "x", 'to': "k"}, {'from': "y", 'to': "l"}, {'from': "z", 'to': "m"}, {'from': "A", 'to': "N"}, {'from': "B", 'to': "O"}, {'from': "C", 'to': "P"}, {'from': "D", 'to': "Q"}, {'from': "E", 'to': "R"}, {'from': "F", 'to': "S"}, {'from': "G", 'to': "T"}, {'from': "H", 'to': "U"}, {'from': "I", 'to': "V"}, {'from': "J", 'to': "W"}, {'from': "K", 'to': "X"}, {'from': "L", 'to': "Y"}, {'from': "M", 'to': "Z"}, {'from': "N", 'to': "A"}, {'from': "O", 'to': "B"}, {'from': "P", 'to': "C"}, {'from': "Q", 'to': "D"}, {'from': "R", 'to': "E"}, {'from': "S", 'to': "F"}, {'from': "T", 'to': "G"}, {'from': "U", 'to': "H"}, {'from': "V", 'to': "I"}, {'from': "W", 'to': "J"}, {'from': "X", 'to': "K"}, {'from': "Y", 'to': "L"}, {'from': "Z", 'to': "M"}];
 
         case "I to Me":
-          return [["I", "me"]];
+          return [{'from': "I", 'to': "me"}];
       }
       return [];
     }
@@ -24,7 +21,7 @@ function listenForClicks() {
 
     browser.tabs
       .query({ active: true, currentWindow: true })
-      .then(vegetableify);
+      .then(change);
   });
 }
 
