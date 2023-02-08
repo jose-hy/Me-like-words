@@ -10,6 +10,13 @@ p {
   text-align: center;
   font-size: 1.6em;
 }
+label {
+  font-size: 1.5em;
+}
+input {
+  width: 100%;
+  margin: 3% auto;
+}
 
 button {
   border: none;
