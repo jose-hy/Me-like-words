@@ -1,0 +1,35 @@
+html,
+body {
+  width: 100px;
+}
+
+.hidden {
+  display: none;
+}
+p {
+  text-align: center;
+  font-size: 1.6em;
+}
+
+button {
+  border: none;
+  width: 100%;
+  margin: 3% auto;
+  padding: 4px;
+  text-align: center;
+  font-size: 1.5em;
+  cursor: pointer;
+  background-color: #CBE7F7;
+}
+
+button:hover {
+  background-color: #B5DEF5;
+}
+
+button[type="reset"] {
+  background-color: #EDB7A8;
+}
+
+button[type="reset"]:hover {
+  background-color: #EB9F8A;
+}
