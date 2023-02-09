@@ -22,13 +22,13 @@
 
     let cn;
     while ((cn = it.nextNode())) {
-      const original_text = cn.nodeValue;
+      const originalText = cn.nodeValue;
 
       let changes = [];
 
       for(const rule of rules) {
         let nextstart = -1;
-        while((nextstart = original_text.indexOf(rule["from"], nextstart + 1)) !== -1) {
+        while((nextstart = originalText.indexOf(rule["from"], nextstart + 1)) !== -1) {
           changes.push({"s": nextstart, "e": nextstart + rule["from"].length, "to": rule["to"]});
         }
       }
@@ -41,28 +41,45 @@
         let newstring = "";
         for(const change of changes) {
           if (lastend <= change["s"]) {
-            newstring += original_text.slice(lastend, change["s"]);
+            newstring += originalText.slice(lastend, change["s"]);
             newstring += change["to"];
             lastend = change["e"];
           }
         }
 
-        newstring += original_text.slice(lastend);
+        newstring += originalText.slice(lastend);
         cn.nodeValue = newstring;
       }
     }
   }
-  function modify_hrefs(cat_url) {
+
+  function modifyHrefs(catURL) {
    for(let link of document.getElementsByTagName("a")) {
-     link.href = cat_url;
+     link.href = catURL;
    }
   }
 
+  function preprocessCustomRules(oldRule) {
+    let newRules = []
+    for(let i = 0; i < oldRules.length; i++) {
+      const rule = oldRules[i];
+      if(rule.length != 2) {
+        alert("Custom rules for replacement specified are malformed in rule " + i);
+        return undefined;
+      }
+      newRules.push({"from": rule[0], "to": rule[1]});
+    }
+    return newRules;
+  }
+
   browser.runtime.onMessage.addListener((message) => {
-    if (message.command === "replace_rules") {
+    if (message.command === "Rules") {
       modifyText(message.rules);
-    } else if (message.command === "cats") {
-      modify_hrefs(message.cat_url);
+    } else if (message.command === "Custom") {
+      const newRules = preprocessCustomRules(message.rules);
+      modifyText(newRules);
+    } else if (message.command === "Cat Links") {
+      modifyHrefs(message.rules);
     }
   });
 })();
