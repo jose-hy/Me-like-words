@@ -15,14 +15,31 @@ function listenForClicks() {
       return [];
     }
 
-    function change(name) {
-      modifyText(name_to_rules(name));
+    function change(tabs) {
+      let rules = name_to_rules(e.target.textContent);
+      browser.tabs.sendMessage(tabs[0].id, {
+        command: "replace_rules",
+        rules: rules
+      });
+    }
+
+    function reportError(error) {
+      console.error(`Error in replacement: ${error}`);
     }
 
     browser.tabs
       .query({ active: true, currentWindow: true })
-      .then(change);
+      .then(change).catch(reportError);
   });
+}
+
+/**
+ * There was an error executing the script.
+ * Display the popup's error message, and hide the normal UI.
+ */
+function reportExecuteScriptError(error) {
+  document.querySelector("#popup-content").classList.add("hidden");
+  console.error(`Failed to execute content script: ${error.message}`);
 }
 
 
@@ -32,6 +49,7 @@ function listenForClicks() {
  * If we couldn't inject the script, handle the error.
  */
 browser.tabs
-  .executeScript({ file: "/scripts/insert_content.js" })
+  .executeScript({ file: "/content_scripts/insert_content.js" })
   .then(listenForClicks)
   .catch(reportExecuteScriptError);
+

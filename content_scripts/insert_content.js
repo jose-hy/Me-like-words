@@ -17,31 +17,26 @@
    * appear first in the text.
    */
   function modifyText(rules) {
-    let root = document.rootElement;
+    let root = document.body;
     const it = document.createNodeIterator(root, NodeFilter.SHOW_TEXT);
 
-    modifySubText(document.documentElement, [{'from': 'I', 'to': 'Me'}]) 
-
-    while (cn = it.nextNode()) {
-      original_text = cn.nodeValue;
+    console.log(rules);
+    let cn;
+    while ((cn = it.nextNode())) {
+      console.log(cn);
+      const original_text = cn.nodeValue;
 
       let changes = [];
 
       for(const rule of rules) {
         let nextstart = -1;
-        while(1) {
-          nextstart = original_text.indexOf(rule['from'], nextstart + 1);
-          if(nextstart == -1)
-            break;
+        while((nextstart = original_text.indexOf(rule['from'], nextstart + 1) !== -1))
           changes.push({'s': nextstart, 'e': nextstart + rule['from'].length, 'to': rule['to']});
-        }
       }
       console.log(changes);
 
       if(changes.length > 0) {
         changes.sort((x, y) => x['s'] > y['s'] ? 1 : (x['s'] < y['s'] ? -1 : (x['e'] > y['e'] ? 1 : (x['e'] < y['e'] ? -1 : 0))));
-
-        let realchanges = [];
 
         let lastend = 0;
 
@@ -59,4 +54,10 @@
       }
     }
   }
+
+  browser.runtime.onMessage.addListener((message) => {
+    if (message.command === "replace_rules") {
+      modifyText(message.rules);
+    }
+  });
 })();
