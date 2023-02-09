@@ -59,7 +59,7 @@
    }
   }
 
-  function preprocessCustomRules(oldRule) {
+  function preprocessCustomRules(oldRules) {
     let newRules = []
     for(let i = 0; i < oldRules.length; i++) {
       const rule = oldRules[i];
