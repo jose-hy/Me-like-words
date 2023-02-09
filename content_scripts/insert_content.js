@@ -20,7 +20,6 @@
     let root = document.body;
     const it = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
 
-    console.log(rules);
     let cn;
     while ((cn = it.nextNode())) {
       const original_text = cn.nodeValue;
@@ -31,10 +30,8 @@
         let nextstart = -1;
         while((nextstart = original_text.indexOf(rule["from"], nextstart + 1)) !== -1) {
           changes.push({"s": nextstart, "e": nextstart + rule["from"].length, "to": rule["to"]});
-          console.log("nextstart: " + nextstart);
         }
       }
-      console.log("ch ch ch ch: " + changes);
 
       if(changes.length > 0) {
         changes.sort((x, y) => x["s"] > y["s"] ? 1 : (x["s"] < y["s"] ? -1 : (x["e"] > y["e"] ? 1 : (x["e"] < y["e"] ? -1 : 0))));
@@ -56,7 +53,7 @@
     }
   }
   function modify_hrefs(cat_url) {
-   for(link of document.getElementsByTagName("a")) {
+   for(let link of document.getElementsByTagName("a")) {
      link.href = cat_url;
    }
   }
