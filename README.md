@@ -10,8 +10,8 @@ Open Firefox and load the `about:debugging#/runtime/this-firefox` page. Click [L
 
 In the Extensions menu on the tool bar, find the Me-like-words icon. Click on an option, or add a custom input to replace other words. The custom input must be formatted in "Rules:" like this:
 
-from,to
-replaceme,imreplaced
-ex1,ex2
+from,to  
+replaceme,imreplaced  
+ex1,ex2  
 
 Click on an option again to disable.
