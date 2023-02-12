@@ -1,15 +1,17 @@
 # Overview
 
-Me-like-words is a firefox extension that replaces words.
+Me-like-words is a Firefox extension that encodes and decodes a Caesar cipher, replaces "I" with "Me," replaces links to a cat photo, or does all three things at once! 
+ 
+# How to Install
 
-# Basic Usage
+Open Firefox and load the `about:debugging#/runtime/this-firefox` page. Click [Load Temporary Add-on](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Temporary_Installation_in_Firefox) and select the `manifest.json` file within the Me-like-words folder. 
 
-To words.csv, add the word to replace and the word replacing it. 
-#### Example Formatting
+# How to Use
+
+In the Extensions menu on the tool bar, find the Me-like-words icon. Click on an option, or add a custom input to replace other words. The custom input must be formatted in "Rules:" like this:
+
 from,to  
 replaceme,imreplaced  
 ex1,ex2  
-I,me
-# How to Install
 
-After changing the words.csv file, open Firefox and load the `about:debugging#/runtime/this-firefox` page. Click [Load Temporary Add-on](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Temporary_Installation_in_Firefox) and select the `manifest.json` file within the Me-like-words folder.
+Click on an option again to disable.
