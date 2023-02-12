@@ -20,12 +20,14 @@
     let root = document.body;
     const it = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
 
+    //loop over every text node in the document
     let cn;
     while ((cn = it.nextNode())) {
       const originalText = cn.nodeValue;
 
       let changes = [];
 
+      //find the locations at which we have matches for the string we're trying to replace
       for(const rule of rules) {
         let nextstart = -1;
         while((nextstart = originalText.indexOf(rule["from"], nextstart + 1)) !== -1) {
@@ -33,12 +35,16 @@
         }
       }
 
+      //if there are any such places
       if(changes.length > 0) {
-        changes.sort((x, y) => x["s"] > y["s"] ? 1 : (x["s"] < y["s"] ? -1 : (x["e"] > y["e"] ? 1 : (x["e"] < y["e"] ? -1 : 0))));
+        //sort the changes such that the ones that come first in the string get applied first
+        changes.sort((x, y) => x["s"] > y["s"] ? 1 : (x["s"] < y["s"] ? -1 : 0));
 
         let lastend = 0;
 
         let newstring = "";
+        //apply the next nonoverlapping change iteratively until we run out of changes, adding the
+        //non-replaced text in-between changes
         for(const change of changes) {
           if (lastend <= change["s"]) {
             newstring += originalText.slice(lastend, change["s"]);
@@ -47,6 +53,7 @@
           }
         }
 
+        //add the rest of the text, and replace it in the node
         newstring += originalText.slice(lastend);
         cn.nodeValue = newstring;
       }
@@ -54,12 +61,14 @@
   }
 
   function modifyHrefs(catURL) {
+   //get every link in the document and replace it with the cat
    for(let link of document.getElementsByTagName("a")) {
      link.href = catURL;
      link.innerHTML = "Cat!";
    }
   }
 
+  //turn the rules, passed in as a 2d array, into the array of dicts structure, alerting on failure
   function preprocessCustomRules(oldRules) {
     let newRules = []
     for(let i = 0; i < oldRules.length; i++) {
@@ -73,6 +82,7 @@
     return newRules;
   }
 
+  //handle messages given from the popup
   browser.runtime.onMessage.addListener((message) => {
     if (message.command === "Rules") {
       modifyText(message.rules);

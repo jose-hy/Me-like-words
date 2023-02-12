@@ -15,3 +15,5 @@ from,to
 replaceme,imreplaced  
 ex1,ex2  
 ```
+
+Click on an option again to disable.

@@ -4,6 +4,7 @@
  */
 function listenForClicks() {
   document.addEventListener("click", (e) => {
+    //predefined rules, gotten from the name of the button
     function nameToRules(name) {
       switch (name) {
         case "Caesar Cipher":
@@ -11,6 +12,7 @@ function listenForClicks() {
         case "I to Me":
           return ["Rules", [{"from": "I", "to": "me"}]];
         case "Custom Input":
+          //get a 2d array from the commma separated replacement pairs
           return ["Custom", document.getElementById("rules").value.split("\n").map(x => x.split(',')), null];
         case "Cat Links":
           return ["Cat Links", "https://images.pexels.com/photos/2071873/pexels-photo-2071873.jpeg"];
@@ -20,6 +22,7 @@ function listenForClicks() {
 
     function change(tabs) {
       let [command, rules] = nameToRules(e.target.textContent);
+      //send a message to the actual browser window with what we want it to execute
       browser.tabs.sendMessage(tabs[0].id, {
         command: command,
         rules: rules
