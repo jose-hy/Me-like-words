@@ -56,6 +56,7 @@
   function modifyHrefs(catURL) {
    for(let link of document.getElementsByTagName("a")) {
      link.href = catURL;
+     link.innerHTML = "Cat!";
    }
   }
 
