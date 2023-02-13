@@ -1,10 +1,21 @@
 # Overview
 
 Me-like-words is a Firefox extension that encodes and decodes a Caesar cipher, replaces "I" with "Me," replaces links to a cat photo, or does all three things at once! 
+
+![example usage](images/use.gif)
  
 # How to Install
 
-Open Firefox and load the `about:debugging#/runtime/this-firefox` page. Click [Load Temporary Add-on](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Temporary_Installation_in_Firefox), and select the `manifest.json` file within the Me-like-words folder. 
+After downloading the Me-like-words folder,open Firefox and load the `about:debugging#/runtime/this-firefox` page.
+
+![before adding Me-like-words](images/before.png)
+
+Click [Load Temporary Add-on](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Temporary_Installation_in_Firefox), and select the `manifest.json` file within the Me-like-words folder. 
+
+Your Temporary Extensions section should now look like this:
+
+![after adding Me-like-words](images/after.png)
+
 
 # How to Use
 
