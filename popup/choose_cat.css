@@ -1,6 +1,14 @@
-html,
+html {
+  border: 2px solid darkgrey;
+  border-radius: 5px;
+}
 body {
+  border-radius: 5px;
   width: 200px;
+  background-color: #555555;
+  color: white;
+  font-family: 'Courier New', monospace;
+  align: center;
 }
 
 .hidden {
@@ -18,17 +26,44 @@ input {
   margin: 3% auto;
 }
 
+@keyframes wow {
+  from {
+    border-radius: 5px;
+    opacity: 75%;
+    width: 90%;
+    margin-left: 4%;
+  }
+  to {
+    border-radius: 10px;
+    opacity: 100%;
+    width: 93%;
+    margin-left: 2.5%;
+  }
+}
+
+textarea {
+  width: 95%;
+  background-color: lightgrey;
+  align: center;
+}
+
 button {
   border: none;
-  width: 100%;
-  margin: 3% auto;
-  padding: 4px;
+  width: 90%;
+  opacity: 85%;
+  margin: 3% 0;
+  margin-left: 4%;
   text-align: center;
   font-size: 1.5em;
   cursor: pointer;
-  background-color: #CBE7F7;
+  background: linear-gradient(to bottom, #b5bdc8 0%,#828c95 36%,#5d7989 100%);
+  border-radius: 5px;
 }
 
 button:hover {
-  background-color: #B5DEF5;
+  animation: 0.5s linear 0s wow;
+  border-radius: 10px;
+  width: 93%;
+  margin: 3% 2.5%;
+  opacity: 100%;
 }
